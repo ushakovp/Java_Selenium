@@ -15,6 +15,5 @@ gradle-app.setting
 .idea
 /gradlew.bat
 /build.gradle
-/gradle/wrapper/gradle-wrapper.jar
-/gradle/wrapper/gradle-wrapper.properties
+gradle
 /gradlew

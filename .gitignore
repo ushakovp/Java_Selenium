@@ -16,3 +16,4 @@ gradle-app.setting
 /build.gradle
 gradle
 /sandbox/build/
+/addressbook-web-tests/build/

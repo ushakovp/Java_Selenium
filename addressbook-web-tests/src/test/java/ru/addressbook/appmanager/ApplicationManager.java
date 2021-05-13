@@ -1,6 +1,5 @@
 package ru.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
@@ -33,7 +32,7 @@ public class ApplicationManager {
         return navigationHelper;
     }
 
-    public SessionHelper getSessionHelper(){
+    public SessionHelper getSessionHelper() {
         return sessionHelper;
     }
 

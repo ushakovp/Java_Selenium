@@ -16,7 +16,7 @@ public class NavigationHelper {
         wd.findElement(By.linkText("groups")).click();
     }
 
-    public void gotoElement(By locator){
+    public void gotoElement(By locator) {
         WebElement element = wd.findElement(locator);
         Actions actions = new Actions(wd);
         actions.moveToElement(element);

@@ -15,6 +15,10 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("groups"));
     }
 
+    public void gotoHomePage() {
+        click(By.linkText("home page"));
+    }
+
     public void gotoElement(By locator) {
         WebElement element = wd.findElement(locator);
         Actions actions = new Actions(wd);

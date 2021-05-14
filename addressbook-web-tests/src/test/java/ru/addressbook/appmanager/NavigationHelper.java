@@ -26,4 +26,8 @@ public class NavigationHelper extends HelperBase {
         actions.perform();
 
     }
+
+    public void acceptAlert() {
+        wd.switchTo().alert().accept();
+    }
 }

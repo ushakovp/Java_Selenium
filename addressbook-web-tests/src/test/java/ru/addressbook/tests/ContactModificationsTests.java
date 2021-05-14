@@ -3,7 +3,7 @@ package ru.addressbook.tests;
 import org.junit.jupiter.api.Test;
 import ru.addressbook.model.ContactData;
 
-public class ContactModificationsTests extends TestBase{
+public class ContactModificationsTests extends TestBase {
 
     @Test
     public void testContactModification() {

@@ -1,13 +1,13 @@
 package ru.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class NavigationHelper extends HelperBase {
 
-    public NavigationHelper(ChromeDriver wd) {
+    public NavigationHelper(WebDriver wd) {
         super(wd);
     }
 

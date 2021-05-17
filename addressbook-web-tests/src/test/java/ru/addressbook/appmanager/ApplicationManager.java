@@ -9,27 +9,31 @@ import org.openqa.selenium.remote.BrowserType;
 import java.time.Duration;
 
 public class ApplicationManager {
+    private final String browser;
     WebDriver wd;
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
-    private final String browser;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
     }
 
     public void init() {
-        if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver();
-        } else if (browser.equals(BrowserType.FIREFOX)) {
-            System.setProperty("webdriver.gecko.driver", "C:\\browserDrivers\\geckodriver.exe");
-            wd = new FirefoxDriver();
-        } else if (browser.equals(BrowserType.IE)) {
-            wd = new InternetExplorerDriver();
+        switch (browser) {
+            case BrowserType.CHROME:
+                wd = new ChromeDriver();
+                break;
+            case BrowserType.FIREFOX:
+                System.setProperty("webdriver.gecko.driver", "C:\\browserDrivers\\geckodriver.exe");
+                wd = new FirefoxDriver();
+                break;
+            case BrowserType.IE:
+                wd = new InternetExplorerDriver();
+                break;
         }
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);

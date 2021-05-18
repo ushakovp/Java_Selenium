@@ -1,5 +1,6 @@
 package ru.addressbook.appmanager;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.addressbook.model.ContactData;
@@ -13,7 +14,7 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void fillContactform(ContactData contactData) {
+    public void fillContactform(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("middlename"), contactData.getMiddleName());
         type(By.name("lastname"), contactData.getLastName());
@@ -35,6 +36,11 @@ public class ContactHelper extends HelperBase {
         selectFromList(By.name("aday"), contactData.getAday());
         selectFromList(By.name("amonth"), contactData.getAmonth());
         type(By.name("ayear"), contactData.getAyear());
+        if (creation) {
+            selectFromList(By.name("new_group"), contactData.getGroup());
+        } else {
+            Assertions.assertFalse(isElementPresent(By.name("new_group")));
+        }
         type(By.name("address2"), contactData.getAddress2());
         type(By.name("phone2"), contactData.getPhone2());
         type(By.name("notes"), contactData.getNotes());

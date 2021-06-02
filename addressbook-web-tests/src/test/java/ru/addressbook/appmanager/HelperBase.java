@@ -3,6 +3,8 @@ package ru.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class HelperBase {
@@ -37,5 +39,13 @@ public class HelperBase {
         } catch (NoSuchElementException ex) {
             return false;
         }
+    }
+
+    protected void gotoElement(By locator) {
+        WebElement element = wd.findElement(locator);
+        Actions actions = new Actions(wd);
+        actions.moveToElement(element);
+        actions.perform();
+
     }
 }

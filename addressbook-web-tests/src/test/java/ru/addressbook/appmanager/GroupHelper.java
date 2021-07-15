@@ -29,7 +29,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public void initGroupCreation() {
-        click(By.name("new"));
+        click(By.name("newwww"));
     }
 
     public void selectGroup(int num) {

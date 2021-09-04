@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import ru.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationsTests extends TestBase {
@@ -28,7 +27,7 @@ public class GroupModificationsTests extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(group);
-        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
         before.sort(byId);
         after.sort(byId);
         Assertions.assertEquals(before, after);

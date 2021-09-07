@@ -3,7 +3,11 @@ package ru.addressbook.appmanager;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver wd) {
@@ -77,5 +81,18 @@ public class ContactHelper extends HelperBase {
 
     public boolean isThereAContact() {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            String[] allData = element.getText().split(" ");
+            String name = allData[1];
+            String lastName = allData[0];
+            ContactData group = new ContactData(name, null, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            contacts.add(group);
+        }
+        return contacts;
     }
 }

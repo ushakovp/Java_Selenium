@@ -157,6 +157,10 @@ public class ContactData {
         return notes;
     }
 
+    public String getFullName() {
+        return firstName + lastName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

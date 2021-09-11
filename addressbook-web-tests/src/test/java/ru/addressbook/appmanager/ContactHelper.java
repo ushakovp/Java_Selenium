@@ -95,4 +95,8 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
+
+    public void modifySelectedContact(int num) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(num).click();
+    }
 }

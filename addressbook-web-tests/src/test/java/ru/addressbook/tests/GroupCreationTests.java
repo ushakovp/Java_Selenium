@@ -1,7 +1,8 @@
 package ru.addressbook.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.addressbook.model.GroupData;
 
 import java.util.Comparator;
@@ -16,7 +17,7 @@ public class GroupCreationTests extends TestBase {
         GroupData group = new GroupData("test1", "test2", "test3");
         app.getGroupHelper().createGroup(group);
         List<GroupData> after = app.getGroupHelper().getGroupList();
-        Assertions.assertEquals(before.size() + 1, after.size());
+        Assert.assertEquals(before.size() + 1, after.size());
 
         group.setId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
         before.add(group);
@@ -25,7 +26,7 @@ public class GroupCreationTests extends TestBase {
         before.sort(byId);
         after.sort(byId);
 
-        Assertions.assertEquals(before, after);
+        Assert.assertEquals(before, after);
     }
 
 

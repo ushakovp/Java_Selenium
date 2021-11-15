@@ -14,16 +14,9 @@ version 'unspecified'
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-beta-3'
-    testRuntimeOnly 'io.qameta.allure:allure-junit5:2.10.0'
-}
-
-test {
-    useJUnitPlatform()
+    compile 'org.testng:testng:7.4.0'
 }

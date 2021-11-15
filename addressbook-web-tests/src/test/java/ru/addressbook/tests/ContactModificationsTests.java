@@ -1,7 +1,7 @@
 package ru.addressbook.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.addressbook.model.ContactData;
 
 import java.util.Comparator;
@@ -24,13 +24,13 @@ public class ContactModificationsTests extends TestBase {
 
 
         List<ContactData> after = app.getContactHelper().getContactList();
-        Assertions.assertEquals(before.size(), after.size());
+        Assert.assertEquals(before.size(), after.size());
 
         before.remove(before.size() - 1);
         before.add(contactData);
         Comparator<? super ContactData> byFullName = Comparator.comparing(ContactData::getFullName);
         before.sort(byFullName);
         after.sort(byFullName);
-        Assertions.assertEquals(before, after);
+        Assert.assertEquals(before, after);
     }
 }

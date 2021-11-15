@@ -1,7 +1,8 @@
 package ru.addressbook.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.addressbook.model.GroupData;
 
 import java.util.List;
@@ -19,13 +20,13 @@ public class GroupDeletionTest extends TestBase {
         app.getGroupHelper().deleteSelectedGroup();
         app.getGroupHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList();
-        Assertions.assertEquals(before.size() - 1, after.size());
+        Assert.assertEquals(before.size() - 1, after.size());
 
         before.remove(before.size() - 1);
         for (int i = 0; i < after.size(); i++) {
-            Assertions.assertEquals(before.get(i), after.get(i));
+            Assert.assertEquals(before.get(i), after.get(i));
         }
-        Assertions.assertEquals(after, before);
+        Assert.assertEquals(after, before);
     }
 
 }

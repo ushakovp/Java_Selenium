@@ -1,20 +1,22 @@
 package ru.addressbook.tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import ru.addressbook.appmanager.ApplicationManager;
 
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestBase {
 
-    protected final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
-    @BeforeEach
+    @BeforeSuite
     public void setUp() {
         app.init();
     }
 
-    @AfterEach
+    @AfterSuite
     public void tearDown() {
         app.stop();
     }

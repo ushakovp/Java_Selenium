@@ -1,9 +1,9 @@
 package ru.addressbook.appmanager;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import ru.addressbook.model.ContactData;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class ContactHelper extends HelperBase {
         if (creation) {
             selectFromList(By.name("new_group"), contactData.getGroup());
         } else {
-            Assertions.assertFalse(isElementPresent(By.name("new_group")));
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
         type(By.name("address2"), contactData.getAddress2());
         type(By.name("phone2"), contactData.getPhone2());

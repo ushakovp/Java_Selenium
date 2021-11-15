@@ -1,7 +1,7 @@
 package ru.addressbook.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.addressbook.model.ContactData;
 
 import java.util.Comparator;
@@ -17,12 +17,12 @@ public class ContactCreationTests extends TestBase {
 
         List<ContactData> after = app.getContactHelper().getContactList();
         before.add(contact);
-        Assertions.assertEquals(before.size(), after.size());
+        Assert.assertEquals(before.size(), after.size());
 
         Comparator<? super ContactData> byFullName = Comparator.comparing(ContactData::getFullName);
         before.sort(byFullName);
         after.sort(byFullName);
-        Assertions.assertEquals(before, after);
+        Assert.assertEquals(before, after);
     }
 
 

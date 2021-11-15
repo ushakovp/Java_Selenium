@@ -1,7 +1,8 @@
 package ru.addressbook.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.addressbook.model.ContactData;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ContactDeletionTests extends TestBase {
         List<ContactData> after = app.getContactHelper().getContactList();
         before.remove(0);
 
-        Assertions.assertEquals(after, before);
+        Assert.assertEquals(after, before);
 
     }
 }

@@ -12,7 +12,7 @@ public class ContactModificationsTests extends TestBase {
     @Test
     public void testContactModification() {
         if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("Test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", "test3", "test", "test", "test"), true);
+            app.getContactHelper().createContact(new ContactData("Test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", "test1", "test", "test", "test"), true);
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().modifySelectedContact(before.size() - 1);

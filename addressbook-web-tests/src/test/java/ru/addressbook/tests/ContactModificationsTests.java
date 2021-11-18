@@ -20,7 +20,7 @@ public class ContactModificationsTests extends TestBase {
         ContactData contactData = new ContactData("Test2", "test2", "test2", "test2", "test2", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", null, "test", "test", "test");
         app.getContactHelper().fillContactform(contactData, false);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().gotoHomePage();
 
 
         List<ContactData> after = app.getContactHelper().getContactList();

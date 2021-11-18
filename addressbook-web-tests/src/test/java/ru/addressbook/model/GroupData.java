@@ -1,5 +1,7 @@
 package ru.addressbook.model;
 
+import java.util.Objects;
+
 public class GroupData {
     private String name;
     private String header;
@@ -54,14 +56,12 @@ public class GroupData {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         GroupData groupData = (GroupData) o;
-
-        return name != null ? name.equals(groupData.name) : groupData.name == null;
+        return id == groupData.id && Objects.equals(name, groupData.name);
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return Objects.hash(name, id);
     }
 }

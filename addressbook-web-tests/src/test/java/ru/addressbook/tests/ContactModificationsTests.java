@@ -13,7 +13,7 @@ public class ContactModificationsTests extends TestBase {
     @BeforeMethod
     private void contactModificationPreconditions() {
         if (!app.contact().isThereAContact()) {
-            app.contact().createContact(new ContactData("Test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", "test1", "test", "test", "test"), true);
+            app.contact().create(new ContactData("Test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", "test1", "test", "test", "test"), true);
         }
     }
 
@@ -23,7 +23,7 @@ public class ContactModificationsTests extends TestBase {
         int index = before.size() - 1;
         ContactData contactData = new ContactData("Test2", "test2", "test2", "test2", "test2", "test", "test", "111", "222", "333", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", null, "test", "test", "test");
 
-        app.contact().modifyContact(index, contactData);
+        app.contact().modify(index, contactData);
         app.goTo().homePage();
 
 

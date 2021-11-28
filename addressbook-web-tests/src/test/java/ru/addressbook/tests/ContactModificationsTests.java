@@ -1,6 +1,7 @@
 package ru.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.addressbook.model.ContactData;
 
@@ -9,24 +10,27 @@ import java.util.List;
 
 public class ContactModificationsTests extends TestBase {
 
+    @BeforeMethod
+    private void contactModificationPreconditions() {
+        if (!app.contact().isThereAContact()) {
+            app.contact().createContact(new ContactData("Test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", "test1", "test", "test", "test"), true);
+        }
+    }
+
     @Test
     public void testContactModification() {
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("Test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", "test1", "test", "test", "test"), true);
-        }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().modifySelectedContact(before.size() - 1);
+        List<ContactData> before = app.contact().all();
+        int index = before.size() - 1;
+        ContactData contactData = new ContactData("Test2", "test2", "test2", "test2", "test2", "test", "test", "111", "222", "333", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", null, "test", "test", "test");
 
-        ContactData contactData = new ContactData("Test2", "test2", "test2", "test2", "test2", "test", "test", "test", "test", "test", "test", "test@test.ru", "test@test.ru", "test@test.ru", "test", "17", "December", "2021", "18", "October", "2020", null, "test", "test", "test");
-        app.getContactHelper().fillContactform(contactData, false);
-        app.getContactHelper().submitContactModification();
-        app.goTo().gotoHomePage();
+        app.contact().modifyContact(index, contactData);
+        app.goTo().homePage();
 
 
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().all();
         Assert.assertEquals(before.size(), after.size());
 
-        before.remove(before.size() - 1);
+        before.remove(index);
         before.add(contactData);
         Comparator<? super ContactData> byFullName = Comparator.comparing(ContactData::getFullName);
         before.sort(byFullName);

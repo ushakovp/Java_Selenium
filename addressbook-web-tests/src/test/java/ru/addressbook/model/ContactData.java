@@ -160,6 +160,10 @@ public class ContactData {
         return this;
     }
 
+    public int getiD(){
+        return iD;
+    }
+
     public String getFirstName() {
         return firstName;
     }

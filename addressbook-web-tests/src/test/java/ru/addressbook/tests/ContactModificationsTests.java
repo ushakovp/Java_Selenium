@@ -25,7 +25,7 @@ public class ContactModificationsTests extends TestBase {
     public void testContactModification() {
         List<ContactData> before = app.contact().all();
         int index = before.size() - 1;
-        ContactData contactData = new ContactData().withFirstName("Test").withMiddleName("test").withLastName("test")
+        ContactData contactData = new ContactData().withId(before.get(index).getiD()).withFirstName("Test").withMiddleName("test").withLastName("test")
                 .withNickName("test").withTitle("test").withCompany("test").withAddress("test").withHome("111").withMobile("222")
                 .withWork("333").withFax("test").withEmail("test@test.ru").withEmail2("test@test.ru").withEmail3("test@test.ru")
                 .withHomePage("test").withBday("17").withBmonth("December").withByear("2021")

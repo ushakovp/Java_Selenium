@@ -96,7 +96,7 @@ public class ContactHelper extends HelperBase {
             String[] allData = element.getText().split(" ");
             String name = allData[1];
             String lastName = allData[0];
-            ContactData group = new ContactData(name, null, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            ContactData group = new ContactData().withFirstName(name).withLastName(lastName);
             contacts.add(group);
         }
         return contacts;

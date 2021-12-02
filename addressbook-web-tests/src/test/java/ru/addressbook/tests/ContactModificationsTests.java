@@ -5,8 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.addressbook.model.ContactData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactModificationsTests extends TestBase {
 
@@ -23,9 +22,11 @@ public class ContactModificationsTests extends TestBase {
 
     @Test
     public void testContactModification() {
-        List<ContactData> before = app.contact().all();
+        Set<ContactData> before = app.contact().all();
         int index = before.size() - 1;
-        ContactData contactData = new ContactData().withId(before.get(index).getiD()).withFirstName("Test").withMiddleName("test").withLastName("test")
+
+        //withId(before.get(index).getiD()).
+        ContactData contactData = new ContactData().withFirstName("Test").withMiddleName("test").withLastName("test")
                 .withNickName("test").withTitle("test").withCompany("test").withAddress("test").withHome("111").withMobile("222")
                 .withWork("333").withFax("test").withEmail("test@test.ru").withEmail2("test@test.ru").withEmail3("test@test.ru")
                 .withHomePage("test").withBday("17").withBmonth("December").withByear("2021")
@@ -35,14 +36,11 @@ public class ContactModificationsTests extends TestBase {
         app.goTo().homePage();
 
 
-        List<ContactData> after = app.contact().all();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(before.size(), after.size());
 
         before.remove(index);
         before.add(contactData);
-        Comparator<? super ContactData> byFullName = Comparator.comparing(ContactData::getFullName);
-        before.sort(byFullName);
-        after.sort(byFullName);
         Assert.assertEquals(before, after);
     }
 }

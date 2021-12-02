@@ -6,8 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver wd) {
@@ -89,14 +90,15 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
     }
 
-    public List<ContactData> all() {
-        List<ContactData> contacts = new ArrayList<>();
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
+            int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
             String[] allData = element.getText().split(" ");
             String name = allData[1];
             String lastName = allData[0];
-            contacts.add(new ContactData().withFirstName(name).withLastName(lastName));
+            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
         }
         return contacts;
     }

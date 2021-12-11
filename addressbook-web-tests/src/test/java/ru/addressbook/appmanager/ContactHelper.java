@@ -65,7 +65,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void modifyContactById(int iD) {
-        wd.findElement(By.xpath("//a[@href='edit.php?id=" + iD + "']")).click();
+        click(By.xpath("//a[@href='edit.php?id=" + iD + "']"));
     }
 
     public void create(ContactData contact, boolean creation) {

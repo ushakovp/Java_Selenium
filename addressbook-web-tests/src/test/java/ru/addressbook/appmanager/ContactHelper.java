@@ -55,18 +55,17 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
-    }
-
-
     public void submitContactModification() {
         click(By.name("update"));
     }
 
-    public void initContactDeletion() {
-        click(By.name("selected[]"));
+    public void delete(ContactData contact) {
+        click(By.id(String.valueOf(contact.getiD())));
         click(By.xpath("//input[@value='Delete']"));
+    }
+
+    private void modifyContactById(int iD) {
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + iD + "']")).click();
     }
 
     public void create(ContactData contact, boolean creation) {
@@ -76,8 +75,8 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public void modify(int index, ContactData contactData) {
-        modifySelectedContact(index);
+    public void modify(ContactData contactData) {
+        modifyContactById(contactData.getiD());
         fillContactform(contactData, false);
         submitContactModification();
     }
@@ -103,12 +102,4 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-    public void modifySelectedContact(int num) {
-        wd.findElements(By.xpath("//img[@alt='Edit']")).get(num).click();
-    }
-
-    /*public ContactData infoFromEditFrom(ContactData contact) {
-        //initContactModificationById(contact.getId());
-        return new ContactData(null);
-    }*/
 }

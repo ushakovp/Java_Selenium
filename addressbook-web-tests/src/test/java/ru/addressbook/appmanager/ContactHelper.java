@@ -10,6 +10,8 @@ import ru.addressbook.model.Contacts;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
+    private Contacts contactCache = null;
+
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -61,6 +63,7 @@ public class ContactHelper extends HelperBase {
     public void delete(ContactData contact) {
         click(By.id(String.valueOf(contact.getiD())));
         click(By.xpath("//input[@value='Delete']"));
+        contactCache = null;
     }
 
     private void modifyContactById(int iD) {
@@ -71,12 +74,14 @@ public class ContactHelper extends HelperBase {
         initContactCreation();
         fillContactform(contact, creation);
         submitContactCreation();
+        contactCache = null;
         returnToHomePage();
     }
 
     public void modify(ContactData contactData) {
         modifyContactById(contactData.getiD());
         fillContactform(contactData, false);
+        contactCache = null;
         submitContactModification();
     }
 
@@ -89,16 +94,19 @@ public class ContactHelper extends HelperBase {
     }
 
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null) {
+            return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
             String[] allData = element.getText().split(" ");
             String name = allData[1];
             String lastName = allData[0];
-            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
+            contactCache.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 
 }

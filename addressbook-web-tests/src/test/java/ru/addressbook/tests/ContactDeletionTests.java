@@ -1,12 +1,13 @@
 package ru.addressbook.tests;
 
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.addressbook.model.ContactData;
+import ru.addressbook.model.Contacts;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -23,17 +24,17 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
-        Set<ContactData> before = app.contact().all();
+        Contacts before = app.contact().all();
         ContactData deletedContact = before.iterator().next();
 
         app.contact().delete(deletedContact);
         app.goTo().acceptAlert();
         app.goTo().homePage();
 
-        Set<ContactData> after = app.contact().all();
-        before.remove(deletedContact);
+        Contacts after = app.contact().all();
 
-        Assert.assertEquals(after, before);
+        assertThat(before.size() - 1, equalTo(after.size()));
+        assertThat(after, equalTo(before.without(deletedContact)));
 
     }
 }

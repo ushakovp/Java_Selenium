@@ -93,6 +93,10 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
     }
 
+    public int count() {
+        return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
+    }
+
     public Contacts all() {
         if (contactCache != null) {
             return new Contacts(contactCache);
